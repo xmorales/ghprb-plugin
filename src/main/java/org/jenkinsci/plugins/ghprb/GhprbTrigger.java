@@ -728,10 +728,13 @@ public class GhprbTrigger extends GhprbTriggerBackwardsCompatible {
                 String description = Util.fixNull(auth.getDescription());
                 int length = description.length();
                 length = length > 50 ? 50 : length;
-                if (!StringUtils.isEmpty(gitHubAuthId) && gitHubAuthId.equals(auth.getId())) {
-                  next = new Option(auth.getServerAPIUrl() + " : " + description.substring(0, length) + "_selected", auth.getId(),true);
+                if (StringUtils.isEmpty(gitHubAuthId)) {
+                    gitHubAuthId = this.gitHubAuthId;
+                }
+                if (gitHubAuthId.equals(auth.getId())) {
+                    next = new Option(auth.getServerAPIUrl() + " : " + description.substring(0, length) + "_selected", auth.getId(),true);
                 } else {
-                  next = new Option(auth.getServerAPIUrl() + " : " + description.substring(0, length), auth.getId(),false);
+                    next = new Option(auth.getServerAPIUrl() + " : " + description.substring(0, length), auth.getId(),false);
                 }
                 model.add(next);
             }
