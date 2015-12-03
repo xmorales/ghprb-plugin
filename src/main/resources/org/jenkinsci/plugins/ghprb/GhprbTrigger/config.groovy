@@ -2,7 +2,7 @@ j = namespace("jelly:core")
 f = namespace("/lib/form")
 
 f.entry(field: "gitHubAuthId", title:_("GitHub API credentials")) {
-  f.select()
+  f.select(value="${it.gitHubAuthId}")
 }
 
 f.entry(field: "adminlist", title: _("Admin list")) {
